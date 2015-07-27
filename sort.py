@@ -1,4 +1,3 @@
-import argparse
 import random
 
 def samplesort(lst):
@@ -101,25 +100,11 @@ def selectionsort(lst):
         lst[i], lst[minimum] = lst[minimum], lst[i]
     return lst
 
-def start():
-    """ This function handles argument parsing """
-    parser = argparse.ArgumentParser()
-    group_input = parser.add_mutually_exclusive_group()
-    group_input.add_argument('--list', nargs='+')
-    group_input.add_argument('--file', nargs=1)
 
-    # group_sort = parser.add_mutually_exclusive_group()
-    # group_sort.add_argument('-q', type=str)
-
-    args = parser.parse_args()
-
+if __name__=="__main__":
     lst = []
-    if args.file:
-        f = open(args.file[0], 'r')
-        for line in f:
-            lst.append(int(line))
-    else:
-        lst = [int(i) for i in args.list]
+    for i in range(100):
+        lst.append(random.randint(1,100))
 
     ans = samplesort(list(lst))
     print "Sample sort returns {}".format(ans)
@@ -128,6 +113,3 @@ def start():
     print "Bubblesort matches sample: {}".format(ans == bubblesort(list(lst)))
     print "Insertionsort matches sample: {}".format(ans == insertionsort(list(lst)))
     print "Selectionsort matches sample: {}".format(ans == selectionsort(list(lst)))
-
-if __name__=="__main__":
-    start()
