@@ -70,6 +70,37 @@ def mergesort(lst):
         ans.extend(s1)
     return ans
 
+def bubblesort(lst):
+    done = False
+    while not done:
+        done = True
+        for i in range(len(lst) - 1):
+            if lst[i] > lst[i+1]:
+                lst[i], lst[i+1] = lst[i+1], lst[i]
+                done = False
+    return lst
+
+def insertionsort(lst):
+    for i in [x+1 for x in range(len(lst) - 1)]:
+        if lst[i] > lst[i-1]:
+            continue
+        k = 0
+        while lst[i] <= lst[i-k]:
+            k += 1
+            if i-k == -1:
+                break
+        lst.insert(i-k+1, lst.pop(i))
+    return lst
+
+def selectionsort(lst):
+    for i in range(len(lst)):
+        minimum = i
+        for j in range(len(lst[i:])):
+            if lst[j+i] < lst[minimum]:
+                minimum = j+i
+        lst[i], lst[minimum] = lst[minimum], lst[i]
+    return lst
+
 def start():
     """ This function handles argument parsing """
     parser = argparse.ArgumentParser()
@@ -90,10 +121,13 @@ def start():
     else:
         lst = [int(i) for i in args.list]
 
-    ans = samplesort(lst)
+    ans = samplesort(list(lst))
     print "Sample sort returns {}".format(ans)
-    print "Quicksort matches sample: {}".format(ans == quicksort(lst))
-    print "Mergesort matches sample: {}".format(ans == mergesort(lst))
+    print "Quicksort matches sample: {}".format(ans == quicksort(list(lst)))
+    print "Mergesort matches sample: {}".format(ans == mergesort(list(lst)))
+    print "Bubblesort matches sample: {}".format(ans == bubblesort(list(lst)))
+    print "Insertionsort matches sample: {}".format(ans == insertionsort(list(lst)))
+    print "Selectionsort matches sample: {}".format(ans == selectionsort(list(lst)))
 
 if __name__=="__main__":
     start()
