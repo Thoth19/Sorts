@@ -1,7 +1,6 @@
 import random
-import sort
 import argparse
-import time
+import sort
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -12,15 +11,15 @@ if __name__ == "__main__":
         lst.append(random.randint(1,100))
 
     ans = sort.samplesort(list(lst))
-    start = time.clock()
-    print "Sample sort returns {} in {} seconds".format(ans, time.clock() - start)
-    start = time.clock()
-    print "Quicksort matches sample: {} in {} seconds".format(ans == sort.quicksort(list(lst)), time.clock() - start)
-    start = time.clock()
-    print "Mergesort matches sample: {} in {} seconds".format(ans == sort.mergesort(list(lst)), time.clock() - start)
-    start = time.clock()
-    print "Bubblesort matches sample: {} in {} seconds".format(ans == sort.bubblesort(list(lst)), time.clock() - start)
-    start = time.clock()
-    print "Insertionsort matches sample: {} in {} seconds".format(ans == sort.insertionsort(list(lst)), time.clock() - start)
-    start = time.clock()
-    print "Selectionsort matches sample: {} in {} seconds".format(ans == sort.selectionsort(list(lst)), time.clock() - start)
+    qs  = sort.quicksort(list(lst))
+    ms  = sort.mergesort(list(lst))
+    bs  = sort.bubblesort(list(lst))
+    ins = sort.insertionsort(list(lst))
+    sel = sort.selectionsort(list(lst))  
+    
+    print "Sample sort returns {} in {}".format(ans[0], ans[1])
+    print "Quicksort matches sample: {} in {}".format(ans[0] == qs[0], qs[1])
+    print "Mergesort matches sample: {} in {}".format(ans[0] == ms[0], ms[1])
+    print "Bubblesort matches sample: {} in {}".format(ans[0] == bs[0], bs[1])
+    print "Insertionsort matches sample: {} in {}".format(ans[0] == ins[0], ins[1])
+    print "Selectionsort matches sample: {} in {}".format(ans[0] == sel[0], sel[1])
